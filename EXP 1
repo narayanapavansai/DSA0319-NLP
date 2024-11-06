@@ -1,0 +1,5 @@
+import re
+text = "This is a test string with test123 patterns."
+pattern = r'\btest\d*\b'
+matches = re.findall(pattern, text)
+print("Matches:", matches)
