@@ -1,0 +1,6 @@
+def fsa_match(s):
+    state = 0
+    for char in s:
+        state = 1 if char == 'a' else 2 if state == 1 and char == 'b' else 0
+    return state == 2
+print(fsa_match("cab"))  
