@@ -1,0 +1,11 @@
+import nltk
+patterns = [
+    (r'.*ing$', 'VBG'),   
+    (r'.*ed$', 'VBD'),    
+    (r'.*es$', 'VBZ'),    
+    (r'.*ly$', 'RB'),       
+    (r'.*', 'NN')           
+]
+regexp_tagger = nltk.RegexpTagger(patterns)
+sentence = "The cat is eating quietly".split()
+print(regexp_tagger.tag(sentence))
