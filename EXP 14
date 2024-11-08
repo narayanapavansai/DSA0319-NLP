@@ -1,0 +1,18 @@
+import nltk
+from nltk import CFG
+
+grammar = CFG.fromstring("""
+  S -> NP VP
+  NP -> DT NN | DT JJ NN
+  VP -> VBZ JJ | VBZ NN
+  DT -> 'The' | 'A'
+  JJ -> 'big' | 'small'
+  NN -> 'cat' | 'dog' | 'mat'
+  VBZ -> 'is'
+""")
+parser = nltk.ChartParser(grammar)
+sentence = "The big cat is small".split()
+if any(parser.parse(sentence)):
+    print("Sentence follows agreement.")
+else:
+    print("Sentence does not follow agreement.")
