@@ -1,0 +1,16 @@
+import nltk
+from nltk import PCFG
+
+grammar = PCFG.fromstring("""
+  S -> NP VP [1.0]
+  NP -> DT NN [0.5] | DT JJ NN [0.5]
+  VP -> VBZ JJ [0.4] | VBZ NN [0.6]
+  DT -> 'The' [0.5] | 'A' [0.5]
+  JJ -> 'big' [0.7] | 'small' [0.3]
+  NN -> 'cat' [0.5] | 'dog' [0.5]
+  VBZ -> 'is' [1.0]
+""")
+parser = nltk.ViterbiParser(grammar)
+sentence = "The cat is small".split()
+for tree in parser.parse(sentence):
+    print(tree)
