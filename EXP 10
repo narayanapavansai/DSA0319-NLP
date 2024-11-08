@@ -1,0 +1,9 @@
+import nltk
+sentence = "He quickly eats apples".split()
+initial_tags = [('He', 'NN'), ('quickly', 'VB'), ('eats', 'NN'), ('apples', 'NN')]
+rules = [(1, 'quickly', 'RB'), (2, 'eats', 'VB')]
+for rule in rules:
+    index, word, tag = rule
+    if initial_tags[index][0] == word:
+        initial_tags[index] = (word, tag)
+print(initial_tags)
