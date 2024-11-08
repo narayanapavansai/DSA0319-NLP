@@ -1,0 +1,17 @@
+import nltk
+from nltk import CFG
+
+grammar = CFG.fromstring("""
+  S -> NP VP
+  NP -> DT NN | DT NN PP
+  VP -> VBZ PP
+  PP -> P NP
+  DT -> 'The' | 'the'
+  NN -> 'cat' | 'mat'
+  VBZ -> 'sits'
+  P -> 'on'
+""")
+parser = nltk.ChartParser(grammar)
+sentence = "The cat sits on the mat".split()
+for tree in parser.parse(sentence):
+    print(tree)
