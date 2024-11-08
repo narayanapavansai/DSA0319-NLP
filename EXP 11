@@ -1,0 +1,14 @@
+import nltk
+grammar = nltk.CFG.fromstring("""
+  S -> NP VP
+  VP -> V NP | V NP PP
+  PP -> P NP
+  V -> 'saw' | 'ate' | 'walked'
+  NP -> 'John' | 'Mary' | 'Bob' | Det N | Det N PP
+  Det -> 'a' | 'an' | 'the' | 'my'
+  N -> 'man' | 'dog' | 'cat' | 'telescope' | 'park'
+  P -> 'in' | 'on' | 'by' | 'with'
+""")
+parser = nltk.ChartParser(grammar)
+sentence = "John saw the dog in the park".split()
+for tree in parser.parse(sentence): print(tree)
